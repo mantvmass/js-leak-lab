@@ -1,6 +1,7 @@
 {
   "name": "js-leak-lab",
   "module": "index.ts",
+  "version": "0.1.2",
   "type": "module",
   "private": true,
   "scripts": {
