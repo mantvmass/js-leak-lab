@@ -108,20 +108,3 @@ systemctl enable --now mem-watchdog
 systemctl status mem-watchdog
 journalctl -u mem-watchdog -f
 ```
-
-## โครงสร้างไฟล์
-
-```
-src/
-  server.ts      - HTTP + WebSocket server
-  index.html     - หน้าเว็บหลัก
-  script.js      - client-side logic
-  styles.css     - custom styles
-  leaks/
-    01-unbounded-array/
-    02-interval-accumulation/
-    ...
-    20-json-parse-retain/
-```
-
-แต่ละ module ใน `src/leaks/` export `startLeak()`, `stopLeak()`, `startFix()`, `stopFix()`, `getSize()` สำหรับควบคุม simulator และ `badCode`, `goodCode` สำหรับแสดงตัวอย่าง
