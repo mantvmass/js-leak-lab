@@ -1,0 +1,20 @@
+{
+  "name": "js-leak-lab",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "start": "bun run src/server.ts",
+    "dev": "bun run --watch src/server.ts"
+  },
+  "devDependencies": {
+    "@types/bun": "latest",
+    "@types/events": "^3.0.3"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  },
+  "dependencies": {
+    "events": "^3.3.0"
+  }
+}
