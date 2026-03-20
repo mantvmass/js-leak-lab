@@ -30,6 +30,12 @@ console.log(`Loaded ${leakModules.length} leak modules`);
 
 const moduleMap = new Map(leakModules.map((m) => [m.id, m]));
 
+// Track running state per module for cross-client sync
+const runningStates: Record<string, null | "leak" | "fix"> = {};
+for (const m of leakModules) {
+    runningStates[m.id] = null;
+}
+
 interface Snapshot {
     ts: number;
     heapUsed: number;
@@ -57,6 +63,7 @@ function getSnapshot() {
         heapTotal: mem.heapTotal,
         external: mem.external,
         leakSizes,
+        runningStates: { ...runningStates },
         history: [...history],
     };
 }
@@ -116,6 +123,12 @@ const server = Bun.serve({
                         "stop-fix": "stopFix",
                     };
                     mod[methodMap[action]!]();
+
+                    // Update running state for cross-client sync
+                    if (action === "start-leak") runningStates[id] = "leak";
+                    else if (action === "start-fix") runningStates[id] = "fix";
+                    else if (action === "stop-leak" || action === "stop-fix") runningStates[id] = null;
+
                     return Response.json({ ok: true, id, action });
                 }
             }

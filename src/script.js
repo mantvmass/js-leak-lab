@@ -224,8 +224,6 @@
         }
         const startAction = type === "leak" ? "start-leak" : "start-fix";
         await fetch(`/leak/${id}/${startAction}`, { method: "POST" });
-        buttonStates[id].running = type;
-        renderButtons(id);
     };
 
     window.stopMode = async function (id) {
@@ -233,8 +231,6 @@
         if (!current) return;
         const stopAction = current === "leak" ? "stop-leak" : "stop-fix";
         await fetch(`/leak/${id}/${stopAction}`, { method: "POST" });
-        buttonStates[id].running = null;
-        renderButtons(id);
     };
 
     // WebSocket
@@ -285,6 +281,17 @@
     }
 
     function updateUI(snap) {
+        // Sync button states from server
+        if (snap.runningStates) {
+            for (const m of modules) {
+                const serverState = snap.runningStates[m.id] ?? null;
+                if (buttonStates[m.id] && buttonStates[m.id].running !== serverState) {
+                    buttonStates[m.id].running = serverState;
+                    renderButtons(m.id);
+                }
+            }
+        }
+
         const maxGauge = 512 * 1048576;
 
         // Desktop gauges
