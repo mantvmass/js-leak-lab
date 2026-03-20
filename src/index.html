@@ -183,8 +183,8 @@
             .then(d => { if (d.stargazers_count != null) document.getElementById('github-stars').textContent = d.stargazers_count; })
             .catch(() => {});
     </script>
-    <!-- Load Script, Query String Cache Busting -->
-    <script src="./script.js?v=0.1.3"></script>
+    <!-- Load Script, ES Module -->
+    <script type="module" src="./client/main.js?v=0.1.3"></script>
 </body>
 
 </html>
