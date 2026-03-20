@@ -1,0 +1,9 @@
+services:
+    js-leak-lab:
+        build: .
+        container_name: js-leak-lab
+        restart: unless-stopped
+        mem_limit: 1g
+        memswap_limit: 1g
+        ports:
+            - "7300:3000"
