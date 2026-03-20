@@ -251,6 +251,8 @@
     }
 
     function connect() {
+        const protocol = location.protocol === 'https:' ? 'wss:' : 'ws:';
+        ws = new WebSocket(`${protocol}//${location.host}`);
         ws = new WebSocket(`ws://${location.host}`);
         ws.onopen = () => { reconnectDelay = 500; setConnStatus(true); };
         ws.onclose = () => {
