@@ -7,9 +7,9 @@ let fixTimer: ReturnType<typeof setInterval> | null = null;
 
 export default {
     id: "19-uncleared-timeout-refs",
-    label: "setTimeout ไม่ clear",
+    label: "19-uncleared-timeout-refs-title",
     tag: "uncleared timeout",
-    description: "สร้าง setTimeout จำนวนมากแล้วเก็บ ref ไว้ใน array โดยไม่เคย clearTimeout ทำให้ timer + closure ค้างใน heap จนกว่าจะหมดเวลา ควร clear timeout ที่ไม่ต้องการ",
+    description: "19-uncleared-timeout-refs-description",
     badCode: `const pendingTimers = [];
 
 function scheduleWork(data) {

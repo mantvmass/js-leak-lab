@@ -8,9 +8,9 @@ let fixTimer: ReturnType<typeof setInterval> | null = null;
 
 export default {
     id: "16-regexp-cache",
-    label: "RegExp สร้างซ้ำ",
+    label: "16-regexp-cache-title",
     tag: "regexp cache",
-    description: "สร้าง new RegExp() ทุกครั้งที่เรียกฟังก์ชัน แล้วเก็บไว้ใน array โดยไม่จำกัด ควร cache pattern ที่ใช้บ่อยหรือจำกัดขนาด",
+    description: "16-regexp-cache-description",
     badCode: `const patterns = [];
 
 function validateInput(input, rule) {

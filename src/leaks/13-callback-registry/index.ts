@@ -13,9 +13,9 @@ function makeHandler() {
 
 export default {
     id: "13-callback-registry",
-    label: "Callback Registry ไม่ถอน",
+    label: "13-callback-registry-title",
     tag: "callback registry",
-    description: "ลงทะเบียน callback ใน pub/sub registry แต่ไม่เคย unsubscribe ทำให้ callback + closure สะสม ควรใช้ named key เพื่อ replace ตัวเก่า",
+    description: "13-callback-registry-description",
     badCode: `const registry = new Map();
 
 function subscribe(event, callback) {

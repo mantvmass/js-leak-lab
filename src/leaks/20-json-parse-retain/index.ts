@@ -19,9 +19,9 @@ function makeJsonPayload() {
 
 export default {
     id: "20-json-parse-retain",
-    label: "JSON.parse สะสม",
+    label: "20-json-parse-retain-title",
     tag: "json parse retain",
-    description: "parse JSON payload แล้วเก็บ result object ไว้ทั้งหมด ทำให้ parsed object สะสมใน heap ควร extract เฉพาะข้อมูลที่ต้องการแล้วปล่อย parsed object",
+    description: "20-json-parse-retain-description",
     badCode: `const results = [];
 
 function processPayload(jsonStr) {

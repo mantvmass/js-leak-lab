@@ -7,9 +7,9 @@ let fixTimer: ReturnType<typeof setInterval> | null = null;
 
 export default {
     id: "18-set-accumulation",
-    label: "Set สะสมไม่จำกัด",
+    label: "18-set-accumulation-title",
     tag: "set accumulation",
-    description: "ใช้ Set เก็บ unique ID ที่เคยเห็น โดยไม่เคย evict ทำให้ Set โตไม่มีที่สิ้นสุด ควรจำกัดขนาดหรือใช้ Bloom filter",
+    description: "18-set-accumulation-description",
     badCode: `const seenIds = new Set();
 
 function processEvent(event) {
