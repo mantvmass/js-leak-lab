@@ -1,25 +1,27 @@
 # Memory Leak Laboratory
 
-เครื่องมือเรียนรู้ memory leak pattern ที่พบบ่อยใน JavaScript/TypeScript
-แสดง heap usage แบบ realtime พร้อม simulator เปิด/ปิด leak ได้ทันที
+[ภาษาไทย](./README.th.md) | [English](./README.md)
 
-- รวม 20 รูปแบบ memory leak เช่น unbounded array, closure scope, event listener สะสม ฯลฯ
-- แต่ละหัวข้อมี Bad Code (leak) กับ Good Code (fix) ที่รันได้จริง
-- แสดง heap, RSS, external memory ผ่าน gauge + chart ผ่าน WebSocket
-- รองรับ desktop และ mobile
+A hands-on learning tool for common JavaScript/TypeScript memory leak patterns.
+Visualizes heap usage in real time with an interactive simulator to toggle leaks on and off instantly.
+
+- Covers 20 memory leak patterns including unbounded arrays, closure scope issues, accumulating event listeners, and more
+- Each topic includes runnable **Bad Code** (leaking) and **Good Code** (fixed) examples
+- Displays heap, RSS, and external memory via gauges + charts over WebSocket
+- Supports both desktop and mobile
 
 ## Stack
 
-Bun + Bun.serve() (HTTP + WebSocket), Tailwind CSS (CDN), Chart.js, Prism.js — ไม่มี build step สำหรับ frontend
+Bun + Bun.serve() (HTTP + WebSocket), Tailwind CSS (CDN), Chart.js, Prism.js — no frontend build step required
 
-## วิธีรัน
+## Getting Started
 
 ```bash
 bun install
 bun run dev
 ```
 
-เปิด http://localhost:3000
+Open http://localhost:3000
 
 ## Docker
 
@@ -28,19 +30,19 @@ docker build -t js-leak-lab .
 docker run -d --name js-leak-lab -p 3000:3000 js-leak-lab
 ```
 
-## จำกัด RAM
+## Limiting RAM
 
-เพราะ lab นี้จำลอง leak จริง ควรกำหนด memory limit ไว้
+Since this lab simulates real leaks, it is recommended to set a memory limit.
 
 ```bash
-# จำกัด 1GB (แนะนำ)
+# Limit to 1GB (recommended)
 docker run -d --name js-leak-lab --memory=1g -p 3000:3000 js-leak-lab
 
-# ปิด swap ด้วย (OOM-kill ทันทีเมื่อ RAM เต็ม)
+# Also disable swap (OOM-kill immediately when RAM is full)
 docker run -d --name js-leak-lab --memory=1g --memory-swap=1g -p 3000:3000 js-leak-lab
 ```
 
-อัปเดต limit container ที่รันอยู่แล้วได้เลยไม่ต้องหยุด:
+You can update the memory limit of a running container without stopping it:
 
 ```bash
 docker update --memory=1g js-leak-lab
@@ -48,13 +50,13 @@ docker update --memory=1g js-leak-lab
 
 ## Auto-Restart
 
-container อาจโดน OOM-kill บ่อย ตั้ง restart policy ไว้ให้ฟื้นเอง:
+The container may be OOM-killed frequently. Set a restart policy so it recovers automatically:
 
 ```bash
 docker run -d --name js-leak-lab --restart=unless-stopped --memory=1g -p 3000:3000 js-leak-lab
 ```
 
-ถ้าต้องการ restart ก่อน crash สร้าง watchdog script `vim /usr/local/bin/mem-watchdog.sh`:
+To restart before a crash occurs, create a watchdog script at `vim /usr/local/bin/mem-watchdog.sh`:
 
 ```bash
 #!/bin/bash
@@ -72,18 +74,18 @@ while true; do
 done
 ```
 
-ให้สิทธิ์กับ mem-watchdog.sh:
+Make it executable:
 ```bash
 chmod +x /usr/local/bin/mem-watchdog.sh
 ```
 
-จากนั้น:
+Then run it in the background:
 
 ```bash
 nohup /usr/local/bin/mem-watchdog.sh >> /var/log/mem-watchdog.log 2>&1 &
 ```
 
-สำหรับ production ที่ต้องรองรับ reboot ลงทะเบียนเป็น systemd service:
+For production environments that need to survive reboots, register it as a systemd service:
 
 ```bash
 cat << 'EOF' > /etc/systemd/system/mem-watchdog.service
@@ -103,7 +105,7 @@ systemctl daemon-reload
 systemctl enable --now mem-watchdog
 ```
 
-ตรวจสอบสถานะ:
+Check the service status:
 ```bash
 systemctl status mem-watchdog
 journalctl -u mem-watchdog -f
