@@ -7,9 +7,9 @@ let fixedCount = 0;
 
 export default {
     id: "07-promise-chain",
-    label: "Promise Chain สะสม",
+    label: "07-promise-chain-title",
     tag: "promise chain",
-    description: "สร้าง Promise ใหม่ทุก tick แล้วเก็บ resolve ไว้ในอาร์เรย์โดยไม่เคย settle ทำให้ Promise object สะสมใน heap พร้อม closure ของแต่ละตัว",
+    description: "07-promise-chain-description",
     badCode: `const pending = [];
 
 setInterval(() => {

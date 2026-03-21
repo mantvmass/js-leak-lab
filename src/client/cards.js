@@ -1,8 +1,33 @@
 import { escHtml } from "./utils.js";
 import { initButtonState } from "./buttons.js";
 
-export function renderCards(cardsEl, modules) {
+let languageData = null;
+
+function getText(key, defaultText) {
+    const lang = localStorage.getItem("preferredLanguage") === "en" ? "en" : "th";
+    if (languageData && languageData[lang] && languageData[lang][key]) {
+        return languageData[lang][key];
+    }
+    if (window.translations && window.translations[key]) {
+        return window.translations[key];
+    }
+    return defaultText;
+}
+
+export async function renderCards(cardsEl, modules) {
     cardsEl.innerHTML = "";
+
+    if (!languageData) {
+        try {
+            const res = await fetch("../language.json");
+            languageData = await res.json();
+            console.log(languageData);
+            
+        } catch (err) {
+            console.warn("Could not load language.json", err);
+        }
+    }
+
     for (const m of modules) {
         initButtonState(m.id);
         const card = document.createElement("div");
@@ -14,11 +39,11 @@ export function renderCards(cardsEl, modules) {
 
         card.innerHTML = `
         <div class="flex items-center gap-2 mb-2 cursor-pointer" onclick="toggleCard('${m.id}')">
-            <span class="text-sm font-medium">${escHtml(m.label)}</span>
+            <span class="text-sm font-medium" data-i18n-label="${m.label}">${escHtml(getText(m.label, m.label))}</span>
             <span class="text-xs px-1.5 py-0.5 rounded bg-gray-800 text-gray-400">${escHtml(m.tag)}</span>
             <span class="ml-auto text-xs text-gray-600 card-chevron" id="chevron-${m.id}">&#9660;</span>
         </div>
-        <p class="text-xs text-gray-500 mb-3 leading-relaxed">${escHtml(m.description)}</p>
+        <p class="text-xs text-gray-500 mb-3 leading-relaxed" data-i18n-desc="${m.description}">${escHtml(getText(m.description, m.description))}</p>
         <div class="flex flex-wrap items-center gap-3 mb-3">
             <div class="btn-group flex flex-wrap gap-2" id="btns-${m.id}">
                 <button onclick="startMode('${m.id}','leak')" class="text-sm px-4 py-2 rounded-lg bg-red-500/10 text-red-400 hover:bg-red-500/20 transition-colors">Start Bad Code</button>
@@ -41,3 +66,20 @@ export function renderCards(cardsEl, modules) {
         cardsEl.appendChild(card);
     }
 }
+
+// ตรวจจับ Event การเปลี่ยนภาษา จาก index.html และอัปเดต Card ทันที
+document.addEventListener('languageChanged', () => {
+    const lang = localStorage.getItem("preferredLanguage") === "en" ? "en" : "th";
+    
+    document.querySelectorAll('[data-i18n-label]').forEach(el => {
+        const key = el.getAttribute('data-i18n-label');
+        const newText = (languageData && languageData[lang] && languageData[lang][key]) || window.translations?.[key] || key;
+        el.textContent = newText;
+    });
+
+    document.querySelectorAll('[data-i18n-desc]').forEach(el => {
+        const key = el.getAttribute('data-i18n-desc');
+        const newText = (languageData && languageData[lang] && languageData[lang][key]) || window.translations?.[key] || key;
+        el.textContent = newText;
+    });
+});

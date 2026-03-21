@@ -27,9 +27,9 @@ function leakyRecurse() {
 
 export default {
     id: "08-timer-in-loop",
-    label: "Timer ซ้อน Timer",
+    label: "08-timer-in-loop-title",
     tag: "nested timer",
-    description: "setTimeout เรียกตัวเองซ้ำ แต่ละ callback จับอาร์เรย์ขนาดใหญ่ไว้ใน closure และ closure ถูกเก็บไว้ใน array ทำให้ทั้ง chain ค้างใน heap",
+    description: "08-timer-in-loop-description",
     badCode: `function makeHeavyArray() {
     return Array.from({ length: 1000 }, (_, i) => ({
         idx: i,

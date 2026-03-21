@@ -37,9 +37,9 @@ function randomKey() {
 
 export default {
     id: "03-map-no-eviction",
-    label: "Map ไม่มี eviction",
+    label: "03-map-no-eviction-title",
     tag: "map no eviction",
-    description: "ใช้ Map เป็น session cache แต่ไม่เคย delete key เก่า ทำให้ Map โตตามจำนวน session ที่เคยเชื่อมต่อ",
+    description: "03-map-no-eviction-description",
     badCode: `const sessions = new Map();
 
 function onConnect(sessionId) {

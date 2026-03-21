@@ -14,9 +14,9 @@ function randomId() {
 
 export default {
     id: "09-global-variable",
-    label: "Global Variable โต",
+    label: "09-global-variable-title",
     tag: "global variable",
-    description: "object ระดับ module ใช้เป็น registry เพิ่ม key ทุก event ไม่เคย prune ทำให้ object โตไม่จำกัดและ GC ไม่สามารถเก็บ value ใด ๆ ได้",
+    description: "09-global-variable-description",
     badCode: `const registry = {};
 
 function randomId() {

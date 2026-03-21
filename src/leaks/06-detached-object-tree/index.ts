@@ -30,9 +30,9 @@ function processTree(node: TreeNode): number {
 
 export default {
     id: "06-detached-object-tree",
-    label: "Detached Object Tree",
+    label: "06-detached-object-tree-title",
     tag: "detached object tree",
-    description: "สร้าง object tree ลึก 5 ชั้นแล้วเก็บ root ไว้ในอาร์เรย์ ไม่เคยลบ ทำให้ tree ทั้งหมดค้างใน heap แม้ไม่ได้ใช้แล้ว",
+    description: "06-detached-object-tree-description",
     badCode: `function buildTree(depth) {
     const node = {
         payload: "t".repeat(500),

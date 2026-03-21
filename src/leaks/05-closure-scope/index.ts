@@ -15,9 +15,9 @@ function makeLargeArray() {
 
 export default {
     id: "05-closure-scope",
-    label: "Closure จับ scope ขนาดใหญ่",
+    label: "05-closure-scope-title",
     tag: "closure scope",
-    description: "closure ภายในจับ reference ไปยังอาร์เรย์ขนาดใหญ่ใน outer scope แม้ใช้แค่ค่าเดียว GC ไม่สามารถเก็บ outer scope ได้ตราบใดที่ closure ยังอยู่",
+    description: "05-closure-scope-description",
     badCode: `function makeLargeArray() {
     return Array.from({ length: 2000 }, (_, i) => ({
         id: i,
