@@ -14,9 +14,9 @@ function heavyWork() {
 
 export default {
     id: "02-interval-accumulation",
-    label: "Interval สะสม",
+    label: "02-interval-accumulation-title",
     tag: "interval accumulation",
-    description: "เรียก setInterval() ซ้ำโดยไม่เก็บ ref ไว้ clear ทำให้ interval ซ้อนกันเรื่อย ๆ แต่ละตัวยึด closure ที่จอง memory ไว้",
+    description: "02-interval-accumulation-description",
     badCode: `// สังเกตว่า interval count เพิ่มขึ้นเรื่อย ๆ
 
 function startPolling() {

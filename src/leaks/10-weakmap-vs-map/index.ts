@@ -12,9 +12,9 @@ function makeObject() {
 
 export default {
     id: "10-weakmap-vs-map",
-    label: "WeakMap vs Map",
+    label: "10-weakmap-vs-map-title",
     tag: "weakmap vs map",
-    description: "ใช้ Map เก็บ metadata โดย key เป็น object instance เมื่อ object หลุด scope แล้ว Map ยังยึด reference ไว้ ทำให้ GC เก็บไม่ได้ WeakMap แก้ปัญหานี้",
+    description: "10-weakmap-vs-map-description",
     badCode: `const metadata = new Map();
 
 function makeObject() {

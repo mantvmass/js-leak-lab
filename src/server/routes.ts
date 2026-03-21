@@ -24,6 +24,8 @@ export function handleRequest(req: Request): Response {
             return serveFile(url.pathname.slice(1), "application/javascript; charset=utf-8");
         if (url.pathname === "/styles.css")
             return serveFile("styles.css", "text/css; charset=utf-8");
+        if (url.pathname === "/language.json")
+            return serveFile("language.json", "application/json; charset=utf-8");
 
         if (url.pathname === "/modules") {
             const meta = leakModules.map((m) => ({

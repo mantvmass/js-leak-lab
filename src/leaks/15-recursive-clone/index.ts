@@ -21,9 +21,9 @@ function deepClone(obj: any): any {
 
 export default {
     id: "15-recursive-clone",
-    label: "Deep Clone สะสม",
+    label: "15-recursive-clone-title",
     tag: "recursive clone",
-    description: "deep clone object ทุกรอบแล้วเก็บสำเนาไว้ทั้งหมด ทำให้ heap โตทวีคูณ ควร clone เฉพาะที่ต้องการ แล้วปล่อย reference ทันที",
+    description: "15-recursive-clone-description",
     badCode: `const snapshots = [];
 
 function makeState() {

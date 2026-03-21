@@ -8,9 +8,9 @@ let fixTimer: ReturnType<typeof setInterval> | null = null;
 
 export default {
     id: "11-buffer-accumulation",
-    label: "Buffer สะสม",
+    label: "11-buffer-accumulation-title",
     tag: "buffer accumulation",
-    description: "จอง Buffer.alloc() แล้วเก็บไว้ในอาร์เรย์โดยไม่เคยปล่อย ทำให้ memory โตตาม จำนวน buffer ที่สร้าง ควรใช้ pool ขนาดคงที่แทน",
+    description: "11-buffer-accumulation-description",
     badCode: `const buffers = [];
 
 function handleChunk(raw) {

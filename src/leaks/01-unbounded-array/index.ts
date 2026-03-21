@@ -14,9 +14,9 @@ function makeEntry() {
 
 export default {
     id: "01-unbounded-array",
-    label: "อาร์เรย์ไม่จำกัดขนาด",
+    label: "01-unbounded-array-title",
     tag: "unbounded array",
-    description: "push() ข้อมูลลง request log โดยไม่เคยลบ ทำให้อาร์เรย์โตไม่มีที่สิ้นสุด หน่วยความจำจะเพิ่มขึ้นเรื่อย ๆ จนกระบวนการถูก kill",
+    description: "01-unbounded-array-description",
     badCode: `const http = require("http");
 
 const requestLog = [];

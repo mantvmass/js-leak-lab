@@ -15,9 +15,9 @@ function generateError() {
 
 export default {
     id: "14-error-object-retention",
-    label: "Error Object สะสม",
+    label: "14-error-object-retention-title",
     tag: "error retention",
-    description: "เก็บ Error object ไว้ทั้งตัวเพื่อ log ย้อนหลัง Error มี stack trace + closure scope ที่ใหญ่ ทำให้ heap โตเร็ว ควรเก็บแค่ message + stack เป็น string",
+    description: "14-error-object-retention-description",
     badCode: `const errorLog = [];
 
 function processRequest() {

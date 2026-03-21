@@ -16,9 +16,9 @@ function makePayload() {
 
 export default {
     id: "04-event-listener",
-    label: "EventListener สะสม",
+    label: "04-event-listener-title",
     tag: "event listener",
-    description: "เรียก emitter.on() ทุกครั้งที่มี request โดยไม่ off() listener เก่า ทำให้ listener สะสมพร้อม closure ที่ยึด memory",
+    description: "04-event-listener-description",
     badCode: `const EventEmitter = require("events");
 const emitter = new EventEmitter();
 emitter.setMaxListeners(0);

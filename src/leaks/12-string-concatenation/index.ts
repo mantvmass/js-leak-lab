@@ -6,9 +6,9 @@ let fixTimer: ReturnType<typeof setInterval> | null = null;
 
 export default {
     id: "12-string-concatenation",
-    label: "String Concatenation สะสม",
+    label: "12-string-concatenation-title",
     tag: "string concat",
-    description: "ต่อ string ด้วย += ใน loop แต่ละรอบสร้าง string ใหม่ที่ใหญ่ขึ้นเรื่อย ๆ แล้วเก็บผลลัพธ์ไว้ทั้งหมด ควรใช้ array collect แล้ว join ครั้งเดียว",
+    description: "12-string-concatenation-description",
     badCode: `const results = [];
 
 function buildReport(entries) {

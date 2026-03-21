@@ -17,9 +17,9 @@ function makeLargeState() {
 
 export default {
     id: "17-console-log-objects",
-    label: "Object Snapshot สะสม",
+    label: "17-console-log-objects-title",
     tag: "snapshot retain",
-    description: "เก็บ snapshot ของ state object ทั้งตัวไว้ใน array เพื่อ debug ทำให้ทุก snapshot + ข้อมูลภายในค้างใน heap ควร log เฉพาะ summary หรือจำกัดจำนวน",
+    description: "17-console-log-objects-description",
     badCode: `const snapshots = [];
 
 function makeLargeState() {
