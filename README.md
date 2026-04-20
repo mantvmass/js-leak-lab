@@ -25,9 +25,22 @@ Open http://localhost:3000
 
 ## Docker
 
+Build locally:
+
 ```bash
 docker build -t js-leak-lab .
-docker run -d --name js-leak-lab -p 3000:3000 js-leak-lab
+```
+
+Or pull the prebuilt image:
+
+```bash
+docker pull ghcr.io/mantvmass/js-leak-lab:latest
+```
+
+Then run it:
+
+```bash
+docker run -d --name js-leak-lab -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 ## Limiting RAM
@@ -36,10 +49,10 @@ Since this lab simulates real leaks, it is recommended to set a memory limit.
 
 ```bash
 # Limit to 1GB (recommended)
-docker run -d --name js-leak-lab --memory=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --memory=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 
 # Also disable swap (OOM-kill immediately when RAM is full)
-docker run -d --name js-leak-lab --memory=1g --memory-swap=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --memory=1g --memory-swap=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 You can update the memory limit of a running container without stopping it:
@@ -53,7 +66,7 @@ docker update --memory=1g js-leak-lab
 The container may be OOM-killed frequently. Set a restart policy so it recovers automatically:
 
 ```bash
-docker run -d --name js-leak-lab --restart=unless-stopped --memory=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --restart=unless-stopped --memory=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 To restart before a crash occurs, create a watchdog script at `vim /usr/local/bin/mem-watchdog.sh`:

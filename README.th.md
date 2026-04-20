@@ -25,9 +25,22 @@ bun run dev
 
 ## Docker
 
+build เอง:
+
 ```bash
 docker build -t js-leak-lab .
-docker run -d --name js-leak-lab -p 3000:3000 js-leak-lab
+```
+
+หรือ pull image ที่ build ไว้แล้ว:
+
+```bash
+docker pull ghcr.io/mantvmass/js-leak-lab:latest
+```
+
+จากนั้นรัน:
+
+```bash
+docker run -d --name js-leak-lab -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 ## จำกัด RAM
@@ -36,10 +49,10 @@ docker run -d --name js-leak-lab -p 3000:3000 js-leak-lab
 
 ```bash
 # จำกัด 1GB (แนะนำ)
-docker run -d --name js-leak-lab --memory=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --memory=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 
 # ปิด swap ด้วย (OOM-kill ทันทีเมื่อ RAM เต็ม)
-docker run -d --name js-leak-lab --memory=1g --memory-swap=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --memory=1g --memory-swap=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 อัปเดต limit container ที่รันอยู่แล้วได้เลยไม่ต้องหยุด:
@@ -53,7 +66,7 @@ docker update --memory=1g js-leak-lab
 container อาจโดน OOM-kill บ่อย ตั้ง restart policy ไว้ให้ฟื้นเอง:
 
 ```bash
-docker run -d --name js-leak-lab --restart=unless-stopped --memory=1g -p 3000:3000 js-leak-lab
+docker run -d --name js-leak-lab --restart=unless-stopped --memory=1g -p 3000:3000 ghcr.io/mantvmass/js-leak-lab:latest # or js-leak-lab if you build local
 ```
 
 ถ้าต้องการ restart ก่อน crash สร้าง watchdog script `vim /usr/local/bin/mem-watchdog.sh`:
